@@ -1,0 +1,347 @@
+# ============================================================
+# MyTourismSCI — Master Indicator Definitions
+# ============================================================
+# This file is the single source of truth for all indicator
+# metadata. Every script that references indicators must read
+# from this file. Do not hard-code indicator lists elsewhere.
+#
+# Pillar structure aligned to UN Tourism MST framework as
+# scoped for Malaysia in the UNESCAP 2020 study.
+# ============================================================
+
+meta:
+  index_name: MyTourismSCI
+  version: "1.0"
+  years:
+    start: 2020
+    end: 2025
+  states:
+    - JOH   # Johor
+    - KDH   # Kedah
+    - KTN   # Kelantan
+    - MLK   # Melaka
+    - NSN   # Negeri Sembilan
+    - PHG   # Pahang
+    - PNG   # Pulau Pinang
+    - PRK   # Perak
+    - PLS   # Perlis
+    - SGR   # Selangor
+    - TRG   # Terengganu
+    - SBH   # Sabah
+    - SWK   # Sarawak
+    - KUL   # W.P. Kuala Lumpur
+    - LBN   # W.P. Labuan
+    - PJY   # W.P. Putrajaya
+
+# ============================================================
+# ECONOMIC PILLAR
+# ============================================================
+indicators:
+
+  - indicator_id: econ_tourism_gdp_share
+    indicator_name: Tourism direct GDP share
+    pillar: economic
+    direction: positive_good
+    initial_weight: 0.143
+    source: DOSM Tourism Satellite Account
+    source_url: https://storage.dosm.gov.my/
+    format: pdf
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2020-2024"
+    status: PARTIAL
+    primary_indicator: true
+    notes: "National TSA annual; Regional TSA available for Sabah (2022). State-level shares may require apportionment."
+
+  - indicator_id: econ_tourism_employment
+    indicator_name: Tourism employment as share of total employment
+    pillar: economic
+    direction: positive_good
+    initial_weight: 0.143
+    source: DOSM Tourism Satellite Account
+    source_url: https://storage.dosm.gov.my/
+    format: pdf
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2020-2024"
+    status: PARTIAL
+    primary_indicator: true
+    notes: "Derived from TSA Table 7. State disaggregation may be limited."
+
+  - indicator_id: econ_domestic_expenditure
+    indicator_name: Domestic tourism expenditure per capita
+    pillar: economic
+    direction: positive_good
+    initial_weight: 0.143
+    source: DOSM Domestic Tourism Survey
+    source_url: https://storage.dosm.gov.my/
+    format: pdf
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2018-2024"
+    status: PARTIAL
+    primary_indicator: true
+    notes: "State-level expenditure from DTS reports. Normalise by state population."
+
+  - indicator_id: econ_intl_arrivals
+    indicator_name: International tourist arrivals
+    pillar: economic
+    direction: positive_good
+    initial_weight: 0.143
+    source: Immigration Department via data.gov.my
+    source_url: https://data.gov.my/data-catalogue/arrivals
+    format: csv
+    granularity: state
+    update_frequency: monthly
+    time_coverage: "2020-2025"
+    status: READY
+    primary_indicator: true
+    notes: "Entry-point based. Aggregate to annual by state."
+
+  - indicator_id: econ_hotel_occupancy
+    indicator_name: Average hotel occupancy rate
+    pillar: economic
+    direction: positive_good
+    initial_weight: 0.143
+    source: MOTAC / MyTourismData
+    source_url: https://www.motac.gov.my/
+    format: pdf
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2020-2024"
+    status: PARTIAL
+    primary_indicator: true
+    notes: "Cross-reference with Tourism Malaysia annual reports."
+
+  - indicator_id: econ_registered_accommodation
+    indicator_name: Number of registered accommodation premises
+    pillar: economic
+    direction: positive_good
+    initial_weight: 0.143
+    source: MOTAC
+    source_url: https://www.motac.gov.my/en/check/registered-hotel
+    format: html
+    granularity: state
+    update_frequency: real-time
+    time_coverage: "2020-2025"
+    status: READY
+    primary_indicator: true
+    notes: "Scrape MOTAC hotel + homestay registries. Annual snapshot."
+
+  - indicator_id: econ_wages_tourism
+    indicator_name: Mean monthly wages in accommodation and F&B sector
+    pillar: economic
+    direction: positive_good
+    initial_weight: 0.143
+    source: DOSM Salaries & Wages Survey
+    source_url: https://storage.dosm.gov.my/
+    format: pdf
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2020-2024"
+    status: PARTIAL
+    primary_indicator: false
+    notes: "Fallback if tourism GDP share unavailable at state level. MSIC Section I."
+
+# ============================================================
+# ENVIRONMENTAL PILLAR
+# ============================================================
+
+  - indicator_id: env_water_quality
+    indicator_name: Water Quality Index (WQI) of river basins
+    pillar: environmental
+    direction: positive_good
+    initial_weight: 0.143
+    source: DOE Environmental Quality Report
+    source_url: https://www.doe.gov.my/
+    format: pdf
+    granularity: basin
+    update_frequency: annual
+    time_coverage: "2020-2024"
+    status: PARTIAL
+    primary_indicator: true
+    notes: "Basin-level WQI mapped to states via geospatial overlay. OpenDOSM water_pollution_basin partial."
+
+  - indicator_id: env_waste_generation
+    indicator_name: Solid waste generation per capita
+    pillar: environmental
+    direction: negative_good
+    initial_weight: 0.143
+    source: SWCorp / JPSPN
+    source_url: https://www.swcorp.gov.my/
+    format: pdf
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2020-2024"
+    status: PARTIAL
+    primary_indicator: true
+    notes: "SWCorp covers Peninsular Malaysia; Sabah/Sarawak separate agencies."
+
+  - indicator_id: env_forest_cover
+    indicator_name: Percentage of state area under forest cover
+    pillar: environmental
+    direction: positive_good
+    initial_weight: 0.143
+    source: Forestry Department Peninsular Malaysia / Sabah / Sarawak
+    source_url: https://www.forestry.gov.my/
+    format: pdf
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2020-2024"
+    status: PARTIAL
+    primary_indicator: true
+    notes: "Three separate forestry departments. Annual statistics reports."
+
+  - indicator_id: env_protected_area_share
+    indicator_name: Share of state area designated as protected
+    pillar: environmental
+    direction: positive_good
+    initial_weight: 0.143
+    source: WDPA / Protected Planet
+    source_url: https://www.protectedplanet.net/
+    format: geospatial
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2020-2025"
+    status: READY
+    primary_indicator: true
+    notes: "WDPA Malaysia extract, intersected with DOSM Kawasanku state boundaries."
+
+  - indicator_id: env_green_hotels
+    indicator_name: Number of ASEAN Green Hotel certified properties
+    pillar: environmental
+    direction: positive_good
+    initial_weight: 0.143
+    source: MOTAC
+    source_url: https://www.motac.gov.my/
+    format: html
+    granularity: state
+    update_frequency: biennial
+    time_coverage: "2020-2024"
+    status: PARTIAL
+    primary_indicator: true
+    notes: "ASEAN Green Hotel Award awardee list. Small absolute numbers."
+
+  - indicator_id: env_tourism_density
+    indicator_name: Tourist arrivals per square kilometre
+    pillar: environmental
+    direction: negative_good
+    initial_weight: 0.143
+    source: Derived (arrivals / state area)
+    source_url: ""
+    format: derived
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2020-2025"
+    status: READY
+    primary_indicator: true
+    notes: "Pressure indicator. State area from Kawasanku boundaries."
+
+  - indicator_id: env_water_access
+    indicator_name: Household access to treated water supply
+    pillar: environmental
+    direction: positive_good
+    initial_weight: 0.143
+    source: OpenDOSM
+    source_url: https://api.data.gov.my/opendosm
+    format: parquet
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2020-2024"
+    status: READY
+    primary_indicator: false
+    notes: "Fallback environmental infrastructure indicator. Slug: hh_access_amenities."
+
+# ============================================================
+# SOCIAL PILLAR
+# ============================================================
+
+  - indicator_id: soc_heritage_sites
+    indicator_name: Number of gazetted national heritage sites
+    pillar: social
+    direction: positive_good
+    initial_weight: 0.167
+    source: Jabatan Warisan Negara
+    source_url: https://www.heritage.gov.my/
+    format: html
+    granularity: state
+    update_frequency: irregular
+    time_coverage: "2020-2025"
+    status: PARTIAL
+    primary_indicator: true
+    notes: "National Heritage Register scrape. Classify by state."
+
+  - indicator_id: soc_homestay_operators
+    indicator_name: Number of registered homestay operators
+    pillar: social
+    direction: positive_good
+    initial_weight: 0.167
+    source: MOTAC
+    source_url: https://www.motac.gov.my/
+    format: html
+    granularity: state
+    update_frequency: real-time
+    time_coverage: "2020-2025"
+    status: READY
+    primary_indicator: true
+    notes: "Community-based tourism proxy. MOTAC registered homestay list."
+
+  - indicator_id: soc_domestic_visitors
+    indicator_name: Domestic tourist visits per state
+    pillar: social
+    direction: positive_good
+    initial_weight: 0.167
+    source: DOSM Domestic Tourism Survey
+    source_url: https://storage.dosm.gov.my/
+    format: pdf
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2018-2024"
+    status: PARTIAL
+    primary_indicator: true
+    notes: "Captures domestic mobility and state attractiveness."
+
+  - indicator_id: soc_population_density
+    indicator_name: Population density (persons per sq km)
+    pillar: social
+    direction: negative_good
+    initial_weight: 0.167
+    source: OpenDOSM
+    source_url: https://api.data.gov.my/opendosm
+    format: parquet
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2020-2025"
+    status: READY
+    primary_indicator: true
+    notes: "Carrying capacity context. Slug: population_state."
+
+  - indicator_id: soc_crime_index
+    indicator_name: Tourism-area crime index
+    pillar: social
+    direction: negative_good
+    initial_weight: 0.167
+    source: PDRM / OpenDOSM
+    source_url: https://api.data.gov.my/opendosm
+    format: csv
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2020-2024"
+    status: PARTIAL
+    primary_indicator: false
+    notes: "Fallback safety indicator. General crime index by state if tourism-specific unavailable."
+
+  - indicator_id: soc_tourist_per_resident
+    indicator_name: Tourist-to-resident ratio
+    pillar: social
+    direction: negative_good
+    initial_weight: 0.167
+    source: Derived (total visitors / population)
+    source_url: ""
+    format: derived
+    granularity: state
+    update_frequency: annual
+    time_coverage: "2020-2025"
+    status: READY
+    primary_indicator: true
+    notes: "Social carrying capacity pressure indicator."

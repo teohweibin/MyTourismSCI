@@ -1,0 +1,51 @@
+# MyTourismSCI — Python dependencies
+# Install: pip install -r requirements.txt
+# Tested on Python 3.14
+
+# --- Core ---
+python-dotenv>=1.0
+pyyaml>=6.0
+
+# --- Data ---
+pandas>=2.2
+numpy>=2.0
+pyarrow>=18.0
+openpyxl>=3.1
+
+# --- Ingestion ---
+requests>=2.31
+beautifulsoup4>=4.12
+lxml>=5.1
+pdfplumber>=0.11
+camelot-py[cv]>=0.11
+tabula-py>=2.9
+
+# --- Geospatial ---
+geopandas>=1.0
+shapely>=2.0
+rtree>=1.1
+pyogrio>=0.9
+contextily>=1.6
+pyproj>=3.6
+
+# --- Stats / ML ---
+scikit-learn>=1.4
+statsmodels>=0.14
+xgboost>=2.0
+shap>=0.45
+scipy>=1.12
+
+# --- LLM ---
+anthropic>=0.39
+
+# --- Visualization ---
+matplotlib>=3.8
+seaborn>=0.13
+plotly>=5.18
+
+# --- Testing ---
+pytest>=8.0
+
+# --- Utilities ---
+tqdm>=4.66
+rich>=13.7
