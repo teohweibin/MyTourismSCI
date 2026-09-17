@@ -1,13 +1,13 @@
-# PDF Triage Report — 2026-09-17
+# PDF Triage Report — 2026-09-18
 
 ## Summary
 
-- Total PDFs scanned: 25
-- Text-based: 21 | Scanned: 4
-- Total pages across all PDFs: 4,017
-- Substantive target pages: 422 (10.5% of total)
-- All target pages (incl. likely TOC): 446 (24 likely TOC pages excluded from headline count)
-- Estimated LLM token savings: 1,785,500 tokens (88.9% reduction vs. full extraction)
+- Total PDFs scanned: 28
+- Text-based: 24 | Scanned: 4
+- Total pages across all PDFs: 4,437
+- Substantive target pages: 465 (10.5% of total)
+- All target pages (incl. likely TOC): 491 (26 likely TOC pages excluded from headline count)
+- Estimated LLM token savings: 1,973,000 tokens (88.9% reduction vs. full extraction)
 
 ## Per-PDF Detail
 
@@ -356,3 +356,49 @@
 - Path: `data\raw\forestry\forestry_peninsular_2024.pdf`
 - Total pages: 239
 - **NOT TEXT-EXTRACTABLE** — requires OCR or manual review
+
+### Johor_master_plan.pdf
+
+- Path: `docs\policy_documents\state_plans\Johor_master_plan.pdf`
+- Total pages: 348
+- Substantive target pages: 36 (10.3% of document)
+- Likely TOC pages excluded: 2
+- All target pages (for extraction): 38
+- Extraction recommendation: **llm**
+- Avg words/page: 343
+- Target page numbers by topic:
+  - tourism_policy_commitments: [4, 5, 7, 14, 55, 62, 63, 67, 71, 72, 74, 75, 101, 103, 104, 118, 119, 124, 127, 143, 155, 173, 176, 180, 195, 197, 208, 210, 224, 268, 270, 271, 273, 282, 320, 321, 329, 339]
+- Sample snippets:
+  - Page 4: "...Struktur Negeri Johor 2030 4.0 HALA TUJU PERANCANGAN DAN PEMBANGUNAN NEGERI JOHOR 4.1 ASPIRASI DAN VISI NEGERI JOHOR 4-1 4.2 MATLAMAT PEMBANGUNAN NEGERI JOHOR 4-3 4.3 TERAS PERANCANGAN NEGERI JOHOR"
+  - Page 5: "...31 : Kajian-kajian Perancangan Negeri 7-43 7.7.2 HIP 32 : Pembentukan Think Tank Negeri dan Data Raya Negeri Johor 7-44 8.0 SASARAN PENCAPAIAN RANCANGAN STRUKTUR NEGERI JOHOR 2030 8.1 MATLAMAT PEMB"
+  - Page 7: "...geri 8-8 Johor 8.2.4 Outcome RSNJ 2030 mengikut Hala Tuju Strategik Teras 4 : Tadbir Urus Mantap dan Berdaya Saing 8-9 8.3.1 Sasaran Negeri Johor 2030 dan Matriks Indikator Pencapaian 8-10 8.4.1 Ma"
+- Estimated tokens if LLM-extracted: 19,000 (vs. 174,000 if whole PDF)
+
+### Sabah_master_plan.pdf
+
+- Path: `docs\policy_documents\state_plans\Sabah_master_plan.pdf`
+- Total pages: 7
+- Text extraction: **OCR** (scanned document)
+- Substantive target pages: 0 (0.0% of document)
+- All target pages (for extraction): 0
+- Extraction recommendation: **manual_review**
+- Avg words/page: 274
+- Target page numbers by topic:
+- Estimated tokens if LLM-extracted: 0 (vs. 3,500 if whole PDF)
+
+### Sarawak_master_plan.pdf
+
+- Path: `docs\policy_documents\state_plans\Sarawak_master_plan.pdf`
+- Total pages: 65
+- Text extraction: **OCR** (scanned document)
+- Substantive target pages: 7 (10.8% of document)
+- All target pages (for extraction): 7
+- Extraction recommendation: **llm**
+- Avg words/page: 127
+- Target page numbers by topic:
+  - tourism_policy_commitments: [5, 6, 20, 21, 30, 31, 32]
+- Sample snippets:
+  - Page 5: "...ic prosperity, we aim to double the size of our economy from RM136 billion in 2019 to RM282 billion in 2030. To achieve this target, Sarawak economy needs to grow on average 8.0% per annum until 20"
+  - Page 6: "...elopment go¢jal services in a plans. With good action and execution plans, | am confident this Plan will achieve its desired objectives.  With the strategic direction in place, Sarawak and its peop"
+  - Page 20: "...perity, Sarawak needs to double the size of the economy from RM136 billion in 2019 to RM282 billion in 2030. To achieve this target, Sarawak economy needs to grow on average 8.0% per annum until 20"
+- Estimated tokens if LLM-extracted: 3,500 (vs. 32,500 if whole PDF)
