@@ -1,0 +1,15 @@
+# Per-document triage overrides — MyTourismSCI
+# If a PDF filename matches a key below, its keyword_sets and min_hits
+# override folder-based auto-detection in run_pdf_triage.py.
+# If no override → uses folder-based auto-detection.
+
+overrides:
+  Full_Document_RMK13.pdf:
+    keyword_sets: [rmk13_tourism, tourism_policy_commitments]
+    min_hits: 2
+  Executive_Summary_RMK13.pdf:
+    keyword_sets: [rmk13_tourism, tourism_policy_commitments]
+    min_hits: 2
+  Slide_RMK13.pdf:
+    keyword_sets: [rmk13_tourism, tourism_policy_commitments]
+    min_hits: 2

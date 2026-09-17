@@ -136,3 +136,18 @@ Every methodological choice must be traceable to:
 - Always defer to ARIMA baseline honestly if XGBoost doesn't beat it
 - Always validate LLM extractions against source documents (target ≥85%
   precision on stratified sample)
+
+## PDF Extraction Policy (MUST FOLLOW)
+
+Before extracting data from any PDF larger than 20 pages:
+1. MUST run `python scripts/run_pdf_triage.py` first
+2. Read `data/processed/pdf_triage.json` to get target page numbers
+3. MUST NOT send full PDF content to any LLM (this includes Claude Code chat
+   reading full PDFs — always read specific page ranges only)
+4. Deterministic extraction (pdfplumber tables) is ALWAYS preferred over LLM
+5. If LLM extraction is required, extract only target pages, max 20 pages per
+   API call
+6. Every LLM extraction output MUST include source page citation for each
+   extracted commitment/statistic
+7. Token budget hard cap: USD $30 across all AO3 extractions. Track in
+   `outputs/llm_extraction_cost_log.md`.
