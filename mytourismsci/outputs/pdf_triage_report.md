@@ -3,11 +3,11 @@
 ## Summary
 
 - Total PDFs scanned: 25
-- Text-based: 17 | Scanned: 8
+- Text-based: 21 | Scanned: 4
 - Total pages across all PDFs: 4,017
-- Substantive target pages: 370 (9.2% of total)
-- All target pages (incl. likely TOC): 394 (24 likely TOC pages excluded from headline count)
-- Estimated LLM token savings: 1,811,500 tokens (90.2% reduction vs. full extraction)
+- Substantive target pages: 422 (10.5% of total)
+- All target pages (incl. likely TOC): 446 (24 likely TOC pages excluded from headline count)
+- Estimated LLM token savings: 1,785,500 tokens (88.9% reduction vs. full extraction)
 
 ## Per-PDF Detail
 
@@ -91,19 +91,49 @@
 
 - Path: `docs\policy_documents\state_plans\Malaysia_Master_Plan_2022-2026.pdf`
 - Total pages: 69
-- **NOT TEXT-EXTRACTABLE** — requires OCR or manual review
+- Text extraction: **OCR** (scanned document)
+- Substantive target pages: 3 (4.3% of document)
+- All target pages (for extraction): 3
+- Extraction recommendation: **llm**
+- Avg words/page: 151
+- Target page numbers by topic:
+  - tourism_policy_commitments: [3, 9, 43]
+  - tourism_employment_wages: [9]
+- Sample snippets:
+  - Page 3: "...learning to leverage on digital platforms. In fact, intensifying the digitalisation of the tourism sector is one of the main objectives of the National Tourism Policy 2020-2030, an initiative launc"
+  - Page 9: "...al capacity in all tourism sub-sectors.  Digital technology-based tourism industry development is vital in ensuring that the objective of the policy could be achieved.  3.  ENHANCE 1. 2. TOURISM BO"
+  - Page 9: "...ime Minister of Malaysia launched the National Tourism Policy 2020-2030 in December 2020, which aims to transform Malaysia's tourism industry by harnessing public-private sector partnerships and em"
+- Estimated tokens if LLM-extracted: 1,500 (vs. 34,500 if whole PDF)
 
 ### Melaka_master_plan.pdf
 
 - Path: `docs\policy_documents\state_plans\Melaka_master_plan.pdf`
 - Total pages: 32
-- **NOT TEXT-EXTRACTABLE** — requires OCR or manual review
+- Text extraction: **OCR** (scanned document)
+- Substantive target pages: 1 (3.1% of document)
+- All target pages (for extraction): 1
+- Extraction recommendation: **manual_review**
+- Avg words/page: 96
+- Target page numbers by topic:
+  - tourism_policy_commitments: [4]
+- Sample snippets:
+  - Page 4: "...n rakyat. Dokumen PSMJ 2035 pada kali ini juga membina satu kerangka kerja bagi menentukan hala tuju masa depan negeri serta sasaran keperluan dan kehendak rakyat.  Saya berharap agar semua peranca"
+- Estimated tokens if LLM-extracted: 500 (vs. 16,000 if whole PDF)
 
 ### Penang_master_plan.pdf
 
 - Path: `docs\policy_documents\state_plans\Penang_master_plan.pdf`
 - Total pages: 42
-- **NOT TEXT-EXTRACTABLE** — requires OCR or manual review
+- Text extraction: **OCR** (scanned document)
+- Substantive target pages: 1 (2.4% of document)
+- All target pages (for extraction): 1
+- Extraction recommendation: **manual_review**
+- Avg words/page: 80
+- Target page numbers by topic:
+  - tourism_policy_commitments: [6]
+- Sample snippets:
+  - Page 6: "...rategic direction, and all initiatives agreed are being implemented effectively to ensure that this Master Plan achieves its targets and vision."
+- Estimated tokens if LLM-extracted: 500 (vs. 21,000 if whole PDF)
 
 ### Perak_master_plan.pdf
 
@@ -285,7 +315,19 @@
 
 - Path: `data\raw\doe\doe_eqr_2025.pdf`
 - Total pages: 271
-- **NOT TEXT-EXTRACTABLE** — requires OCR or manual review
+- Text extraction: **OCR** (scanned document)
+- Substantive target pages: 47 (17.3% of document)
+- All target pages (for extraction): 47
+- Extraction recommendation: **llm**
+- Avg words/page: 252
+- Target page numbers by topic:
+  - waste_data: [243, 255]
+  - water_quality: [7, 42, 43, 44, 46, 62, 63, 64, 67, 109, 112, 117, 120, 121, 122, 124, 129, 137, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 170, 171, 263, 265, 266, 267, 268, 269]
+- Sample snippets:
+  - Page 7: "...unhealthy were 49.4% and 0.2% respectively, throughout Malaysia in 2025.  The river quality in terms of Water Quality Index (WQI) showed aslight decrease in 2025. A total of 1,353 manual river wate"
+  - Page 42: "...Slightly Polluted pa _ esen, KELASV/CLASSV @ o Station 1p © --@© 71% Tercemat/ Polluted  INDEKS KUALITI AIR MENGIKUT STESEN WATER QUALITY INDEX BY STATION  STATUS KUALITI AIR MENGIKUT SUNGAI / WATE"
+  - Page 43: "...sent to the laboratory as well, for analysis aimed at determining the criteria based on physicochemical and biological. The Water Quality Index (WQI) is used to indicate the level of pollution and "
+- Estimated tokens if LLM-extracted: 23,500 (vs. 135,500 if whole PDF)
 
 ### forestry_peninsular_2022.pdf
 

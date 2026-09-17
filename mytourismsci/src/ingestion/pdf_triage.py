@@ -12,14 +12,16 @@ triage_pdf(pdf_path, keyword_sets, chunk_size=50)
 
 Inputs:  PDF files, keyword set definitions (dict or YAML)
 Outputs: Structured triage dict per PDF
-Dependencies: pdfplumber, pyyaml
+Dependencies: pdfplumber, pyyaml, pymupdf (optional OCR), pytesseract (optional OCR)
 """
 
 from __future__ import annotations
 
 import logging
+import os
 import re
 import time
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
 from pathlib import Path
 
 import pdfplumber
@@ -27,10 +29,107 @@ import yaml
 
 logger = logging.getLogger(__name__)
 
+# ---------------------------------------------------------------------------
+# Tesseract configuration — resolved once at import time
+# ---------------------------------------------------------------------------
+_TESSERACT_CMD = os.environ.get(
+    "TESSERACT_CMD",
+    r"D:\Downloads\tesseract.exe",
+)
+_TESSDATA_PREFIX = os.environ.get(
+    "TESSDATA_PREFIX",
+    r"D:\Downloads\tessdata",
+)
+
+try:
+    import pymupdf as fitz
+    import pytesseract
+
+    pytesseract.pytesseract.tesseract_cmd = _TESSERACT_CMD
+    os.environ.setdefault("TESSDATA_PREFIX", _TESSDATA_PREFIX)
+    _OCR_AVAILABLE = True
+except ImportError:
+    _OCR_AVAILABLE = False
+
 KEYWORD_SETS_PATH = Path("config/pdf_keyword_sets.yaml")
 
 # Tokens per page estimate for LLM cost projection
 _TOKENS_PER_PAGE = 500
+
+_OCR_PAGE_TIMEOUT = 30  # seconds per page
+
+
+def ocr_pdf_to_text(
+    pdf_path: Path,
+    dpi: int = 200,
+    lang: str = "eng+msa",
+) -> dict[int, str]:
+    """OCR a scanned PDF and return extracted text per page.
+
+    Parameters
+    ----------
+    pdf_path : Path
+        Path to the scanned PDF.
+    dpi : int
+        Render resolution. 200 balances speed and accuracy.
+    lang : str
+        Tesseract language codes (``+``-delimited).
+
+    Returns
+    -------
+    dict[int, str]
+        Mapping of 1-indexed page number to extracted text.
+    """
+    if not _OCR_AVAILABLE:
+        logger.error("OCR requested but pymupdf/pytesseract not installed")
+        return {}
+
+    from PIL import Image
+    import io
+
+    pdf_path = Path(pdf_path)
+    pages_text: dict[int, str] = {}
+
+    try:
+        doc = fitz.open(pdf_path)
+    except Exception as exc:
+        logger.error("Cannot open %s for OCR: %s", pdf_path.name, exc)
+        return {}
+
+    total = len(doc)
+    logger.info("OCR starting on %s (%d pages, dpi=%d, lang=%s)",
+                pdf_path.name, total, dpi, lang)
+
+    def _ocr_one_page(page_obj):
+        mat = fitz.Matrix(dpi / 72, dpi / 72)
+        pix = page_obj.get_pixmap(matrix=mat)
+        img = Image.open(io.BytesIO(pix.tobytes("png")))
+        return pytesseract.image_to_string(img, lang=lang)
+
+    for page_idx in range(total):
+        page_num = page_idx + 1
+        if page_num % 25 == 0 or page_num == 1:
+            logger.info("  OCR page %d/%d of %s", page_num, total, pdf_path.name)
+
+        try:
+            with ThreadPoolExecutor(max_workers=1) as executor:
+                future = executor.submit(_ocr_one_page, doc[page_idx])
+                text = future.result(timeout=_OCR_PAGE_TIMEOUT)
+            pages_text[page_num] = text
+        except FuturesTimeoutError:
+            logger.warning("OCR timeout on page %d of %s (>%ds)",
+                           page_num, pdf_path.name, _OCR_PAGE_TIMEOUT)
+            pages_text[page_num] = ""
+        except Exception as exc:
+            logger.warning("OCR error on page %d of %s: %s",
+                           page_num, pdf_path.name, exc)
+            pages_text[page_num] = ""
+
+    doc.close()
+    succeeded = sum(1 for t in pages_text.values() if len(t.strip()) > 0)
+    logger.info("OCR complete on %s: %d/%d pages yielded text",
+                pdf_path.name, succeeded, total)
+    return pages_text
 
 
 def load_keyword_sets(path: Path = KEYWORD_SETS_PATH) -> dict[str, list[str]]:
@@ -99,6 +198,7 @@ def triage_pdf(
         "pdf_filename": pdf_path.name,
         "total_pages": 0,
         "text_extractable": True,
+        "ocr_used": False,
         "avg_words_per_page": 0.0,
         "target_pages_by_topic": {},
         "extraction_recommendation": "manual_review",
@@ -126,14 +226,29 @@ def triage_pdf(
 
     # Check first page for text extractability
     first_text = pdf.pages[0].extract_text() or ""
+    ocr_texts: dict[int, str] | None = None
     if len(first_text.strip()) == 0:
-        logger.error(
-            "Page 1 of %s returned no text — likely a scanned PDF",
+        logger.warning(
+            "Page 1 of %s returned no text — attempting OCR fallback",
             pdf_path.name,
         )
-        result["text_extractable"] = False
         pdf.close()
-        return result
+        if _OCR_AVAILABLE:
+            ocr_texts = ocr_pdf_to_text(pdf_path)
+            succeeded = sum(1 for t in ocr_texts.values() if len(t.strip()) > 0)
+            if succeeded >= total_pages * 0.5:
+                result["text_extractable"] = True
+            else:
+                result["text_extractable"] = False
+            result["ocr_used"] = True
+        else:
+            logger.error(
+                "OCR not available (pymupdf/pytesseract missing) — "
+                "cannot process scanned PDF %s",
+                pdf_path.name,
+            )
+            result["text_extractable"] = False
+            return result
 
     total_words = 0
     all_target_page_nums: set[int] = set()
@@ -143,24 +258,11 @@ def triage_pdf(
     t_start = time.time()
     pages_processed = 0
 
-    # Process in chunks
-    for chunk_start in range(0, total_pages, chunk_size):
-        chunk_end = min(chunk_start + chunk_size, total_pages)
-
-        for page_idx in range(chunk_start, chunk_end):
-            if time.time() - t_start > max_seconds:
-                logger.warning(
-                    "Timeout after %ds on %s (processed %d/%d pages)",
-                    max_seconds, pdf_path.name, pages_processed, total_pages,
-                )
-                break
-            page = pdf.pages[page_idx]
-            page_num = page_idx + 1  # 1-indexed
-
-            text = page.extract_text() or ""
+    if ocr_texts is not None:
+        # OCR path: iterate over OCR-extracted text
+        for page_num, text in ocr_texts.items():
             word_count = len(text.split())
             total_words += word_count
-
             has_table = False
 
             for topic, keywords in keyword_sets.items():
@@ -180,15 +282,55 @@ def triage_pdf(
                     all_target_page_nums.add(page_num)
                     if likely_toc:
                         toc_page_nums.add(page_num)
-                    if has_table:
-                        target_pages_with_tables += 1
 
             pages_processed += 1
-        else:
-            continue
-        break  # timeout broke inner loop
+    else:
+        # Standard text-extraction path
+        for chunk_start in range(0, total_pages, chunk_size):
+            chunk_end = min(chunk_start + chunk_size, total_pages)
 
-    pdf.close()
+            for page_idx in range(chunk_start, chunk_end):
+                if time.time() - t_start > max_seconds:
+                    logger.warning(
+                        "Timeout after %ds on %s (processed %d/%d pages)",
+                        max_seconds, pdf_path.name, pages_processed, total_pages,
+                    )
+                    break
+                page = pdf.pages[page_idx]
+                page_num = page_idx + 1  # 1-indexed
+
+                text = page.extract_text() or ""
+                word_count = len(text.split())
+                total_words += word_count
+
+                has_table = False
+
+                for topic, keywords in keyword_sets.items():
+                    matched = _search_keywords(text, keywords)
+                    if len(matched) >= min_keyword_hits:
+                        likely_toc = word_count < 100 and len(matched) >= 2
+                        snippet = _extract_snippet(text, matched[0])
+                        result["target_pages_by_topic"][topic].append({
+                            "page": page_num,
+                            "matched_keywords": matched,
+                            "keyword_hit_count": len(matched),
+                            "has_table": has_table,
+                            "word_count": word_count,
+                            "snippet": snippet,
+                            "likely_toc": likely_toc,
+                        })
+                        all_target_page_nums.add(page_num)
+                        if likely_toc:
+                            toc_page_nums.add(page_num)
+                        if has_table:
+                            target_pages_with_tables += 1
+
+                pages_processed += 1
+            else:
+                continue
+            break  # timeout broke inner loop
+
+        pdf.close()
 
     result["avg_words_per_page"] = round(total_words / total_pages, 1) if total_pages > 0 else 0.0
 

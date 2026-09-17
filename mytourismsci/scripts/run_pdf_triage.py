@@ -177,7 +177,9 @@ def _write_report(results: list[dict], report_path: Path) -> None:
         lines.append(f"- Path: `{r['pdf_path']}`")
         lines.append(f"- Total pages: {r['total_pages']}")
 
-        if not r["text_extractable"]:
+        if r.get("ocr_used"):
+            lines.append("- Text extraction: **OCR** (scanned document)")
+        if not r["text_extractable"] and not r.get("ocr_used"):
             lines.append("- **NOT TEXT-EXTRACTABLE** — requires OCR or manual review")
             lines.append("")
             continue

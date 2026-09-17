@@ -18,6 +18,8 @@ requests>=2.31
 beautifulsoup4>=4.12
 lxml>=5.1
 pdfplumber>=0.11
+pymupdf>=1.24
+pytesseract>=0.3.10
 camelot-py[cv]>=0.11
 tabula-py>=2.9
 
