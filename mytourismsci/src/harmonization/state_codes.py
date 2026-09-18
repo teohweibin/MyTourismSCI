@@ -117,6 +117,8 @@ _ALIAS_MAP: dict[str, str] = {
     "kuala lumpur": "KUL",
     "kl": "KUL",
     "kul": "KUL",
+    "wpkl": "KUL",
+    "wp kl": "KUL",
 
     # W.P. Labuan
     "w.p. labuan": "LBN",

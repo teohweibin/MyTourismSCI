@@ -26,11 +26,17 @@ env/
 # --- Environment variables (secrets) ---
 .env
 
-# --- Data: raw and processed are gitignored; final is committed ---
-data/raw/*
+# --- Data: raw is always gitignored ---
+data/raw/
 !data/raw/.gitkeep
-data/processed/*
-!data/processed/.gitkeep
+
+# --- Processed data: commit parquets + JSON so teammates skip ingestion ---
+# Ignore non-data files that might land here (logs, temp, etc.)
+# but keep the directory tree and all .parquet / .json artefacts.
+data/processed/**/*.csv
+data/processed/**/*.xlsx
+data/processed/**/*.log
+data/processed/**/*.tmp
 
 # --- Policy documents (large PDFs, not committed) ---
 docs/policy_documents/*
