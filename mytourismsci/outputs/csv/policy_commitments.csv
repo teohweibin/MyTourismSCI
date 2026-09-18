@@ -1,0 +1,52 @@
+source_doc,source_page,state,commitment_type,target_value,target_unit,target_year,baseline_value,baseline_year,sustainability_dimension,verbatim_quote,confidence
+Annual_report_MOTAC_2024.pdf,173,national,visitor_arrivals,37961485.0,international tourist arrivals (2024 actual),2024,,,economic,"Jumlah 37,961,485 ketibaan pelancong mengikut mod pengangkutan bagi tahun 2024",medium
+Executive_Summary_RMK13.pdf,9,national,other,6.0,percent per annum private investment growth,2030,,,economic,"increase private investment growth at 6% per annum, with an average value of RM417.9 billion per year",high
+Executive_Summary_RMK13.pdf,10,national,other,5.2,percent per annum services sector growth,2030,,,economic,"growth of the services sector, which is targeted at 5.2% per annum during the Thirteenth Plan period",high
+Executive_Summary_RMK13.pdf,10,national,other,5.8,percent per annum manufacturing sector growth,2030,,,economic,support growth of the manufacturing sector at 5.8% per annum during the Thirteenth Plan period,high
+Executive_Summary_RMK13.pdf,10,national,employment,3.6,percent per annum labour productivity growth,2030,,,economic,increase the average growth of labour productivity at 3.6% per annum during the Thirteenth Plan period,high
+Full_Document_RMK13.pdf,63,national,other,45.0,percent reduction,2030,,2005,environmental,Malaysia is committed to achieve the target of 45% reduction in GHG emissions intensity to GDP in 2030 based on the emissions intensity in 2005,high
+Full_Document_RMK13.pdf,32,national,other,5.2,percent per annum,2030,,,economic,"growth of the services sector, which is targeted at 5.2% per annum during the Thirteenth Plan period",high
+Full_Document_RMK13.pdf,82,national,other,40.0,percent modal share,2030,,,environmental,continued towards achieving the target of 40% modal share in 2030,high
+Full_Document_RMK13.pdf,36,national,employment,40.0,percent of GDP,2030,,,social,increase the share of compensation of employees to 40% to GDP by 2030,high
+Full_Document_RMK13.pdf,36,national,employment,60.0,percent,2030,,,social,"60% of the female labour force participation rate, 10 years after the introduction of the Ekonomi MADANI",high
+Full_Document_RMK13.pdf,31,national,other,6.0,percent per annum,2030,,,economic,"increase private investment growth at 6% per annum, with an average value of RM417.9 billion per year",high
+Full_Document_RMK13.pdf,32,national,employment,3.6,percent per annum,2030,,,economic,increase the average growth of labour productivity at 3.6% per annum during the Thirteenth Plan period,high
+Full_Document_RMK13.pdf,56,national,employment,700000.0,skilled workers,2030,,,social,"meet the needs of 700,000 skilled workers by 2030 in the manufacturing sector and manufacturing-related services subsector",medium
+Full_Document_RMK13.pdf,43,national,other,3.0,percent of GDP,2030,,,economic,reduce the fiscal deficit to be below 3% and ensure that the debt level will not exceed 60% to GDP,high
+Full_Document_RMK13.pdf,150,national,other,500000.0,units,2030,179769.0,2025,social,"Number of affordable houses constructed...500,000 units",high
+Full_Document_RMK13.pdf,85,national,other,1000.0,accredited social enterprises,2030,382.0,2024,social,"Number of accredited social enterprises...382 (2024)...1,000 (2030)",high
+Full_Document_RMK13.pdf,97,national,employment,1700.0,RM per month,2025,1500.0,2022,social,"the second revision involved the increase to RM1,700 effective February 2025",high
+Johor_master_plan.pdf,119,JOH,other,281707.0,RM million GDP,2030,106709.0,2015,economic,"KDNK Negeri daripada RM 106,709 juta (2015) kepada RM 281,707 juta (2030)",high
+Johor_master_plan.pdf,119,JOH,other,6.5,percent per annum,2030,5.9,2015,economic,Kadar pertumbuhan ekonomi/KDNK Negeri 5.9% (2015) Sasaran 6.5% (2030),high
+Johor_master_plan.pdf,119,JOH,other,45301.0,RM per capita,2030,29558.0,2015,economic,"KDNK per kapita negeri RM 29,558 (2015) Sasaran RM 45,301 (2030)",high
+Johor_master_plan.pdf,119,JOH,other,13000.0,RM per month household income,2030,6981.0,2015,social,"Pendapatan isi rumah purata RM 6,981 (2015) Sasaran RM 13,000 (2030)",high
+Johor_master_plan.pdf,124,JOH,other,6.21,million population,2030,3.61,2015,social,sasaran penduduk daripada 3.61 juta orang (2015) kepada 6.21 juta orang (2030),high
+Johor_master_plan.pdf,124,JOH,employment,0.75,labour force participation rate,2030,0.64,2015,social,Kadar penyertaan tenaga buruh 0.64% (2015) Sasaran 0.75% (2030),high
+Johor_master_plan.pdf,208,JOH,other,2.0,hectares per 1000 urban population,2030,1.69,2015,environmental,"Keluasan kawasan lapang bagi setiap 1,000 orang penduduk bandar 1.69 (2015) Sasaran 2.00 (2030)",high
+Johor_master_plan.pdf,173,JOH,other,0.0,percent industrial land outside zones,2030,11.9,2015,environmental,Guna tanah industri di luar zon industri 11.9% (2015) Sasaran 0% (2030),high
+Johor_master_plan.pdf,224,JOH,other,100.0,percent 4G coverage,2030,40.0,2015,economic,Peratusan liputan rangkaian 4G di bandar-bandar dan petempatan utama 40% (2015) Sasaran 100% (2030),high
+Kuala_Lumpur_master_plan.pdf,69,KUL,visitor_arrivals,22.5,million domestic tourists,2040,,,economic,Tourist arrival (million people) Domestic 22.5,high
+Kuala_Lumpur_master_plan.pdf,69,KUL,visitor_arrivals,13.0,million international tourists,2040,,,economic,Tourist arrival (million people) International 13,high
+Kuala_Lumpur_master_plan.pdf,69,KUL,tourism_receipts,77.0,RM billion total tourist spend,2040,,,economic,Total tourist spend (RM billion) 30.4 domestic + 47.0 international,high
+Kuala_Lumpur_master_plan.pdf,63,KUL,employment,1.08,million working population,2040,,,social,1.08 MILLION TOTAL WORKING POPULATION,high
+Kuala_Lumpur_master_plan.pdf,63,KUL,employment,75.0,percent labour participation rate,2040,,,social,75% LABOUR PARTICIPATION RATE,high
+Kuala_Lumpur_master_plan.pdf,135,KUL,other,20.0,square metres open space per person,2040,10.61,2021,environmental,20m2 PER PERSON The ratio of open space per person,high
+Kuala_Lumpur_master_plan.pdf,135,KUL,other,50.0,percent tree canopy coverage,2040,,,environmental,50% Tree Canopy Coverage,high
+Kuala_Lumpur_master_plan.pdf,135,KUL,other,1000000.0,trees planted,2040,,,environmental,"1.0 MILLION TREES Tree planting in parks, residential areas and tourist hotspots",high
+Kuala_Lumpur_master_plan.pdf,135,KUL,other,200.0,km park connector network,2040,,,environmental,200 km Park Connector Network,high
+Kuala_Lumpur_master_plan.pdf,17,KUL,other,45.0,percent GHG emissions intensity reduction,2030,,2005,environmental,Malaysia will reduce the intensity of greenhouse gas emissions from the GDP by 45 percent in 2030,high
+Perlis_master_plan.pdf,11,PLS,visitor_arrivals,6500000.0,tourist arrivals,2030,4100000.0,2018,economic,"6,500,000 TOURIST ARRIVALS 2018 Milestone: 4,100,000 tourist arrivals",high
+Perlis_master_plan.pdf,11,PLS,tourism_receipts,8000.0,RM million GDP,2030,5884.0,2018,economic,"GDP WORTH RM 8,000 MILLION (AVERAGE ANNUAL GROWTH RATE OF 2.75%) 2018 Milestone: Worth RM 5,884 million",high
+Perlis_master_plan.pdf,11,PLS,other,4.0,international standard tourism products,2030,0.0,2018,economic,4 INTERNATIONAL STANDARD TOURISM PRODUCTS & 2 INTERNATIONAL STANDARD TOURISM EVENTS,high
+Perlis_master_plan.pdf,11,PLS,employment,100000.0,service sector workforce,2030,74400.0,2018,social,"WORKFORCE PARTICIPATION IN THE SERVICE SECTOR ATTAINED 100,000 EMPLOYMENT 2018 Milestone: 74,400",high
+Perlis_master_plan.pdf,11,PLS,hotel_rooms,45.0,percent accommodation occupancy rate,2030,31.0,2018,economic,ACCOMMODATION OCCUPANCY RATE OF 45% 2018 Milestone: Accommodation occupancy rate of 31%,high
+Perlis_master_plan.pdf,11,PLS,other,100.0,percent tourism entrepreneurs registered online,2030,0.0,2018,economic,100% OF TOURISM ENTREPRENEURS REGISTERED WITH THE OFFICIAL TOURISM WEBSITE,medium
+Sarawak_master_plan.pdf,20,SWK,other,282.0,RM billion GDP,2030,136.0,2019,economic,double the size of our economy from RM136 billion in 2019 to RM282 billion in 2030,high
+Sarawak_master_plan.pdf,20,SWK,other,8.0,percent GDP growth per annum,2030,,,economic,Sarawak economy needs to grow on average 8.0% per annum until 2030,high
+Sarawak_master_plan.pdf,30,SWK,tourism_receipts,11.0,percent of GDP,2030,,,economic,Higher GDP contribution - accounting for 11% by 2030,high
+Sarawak_master_plan.pdf,30,SWK,visitor_arrivals,7.5,percent annual growth rate,2030,,,economic,Increased arrivals - 7.5% annual growth rate in visitor arrivals,high
+Sarawak_master_plan.pdf,30,SWK,other,7.5,nights average length of stay,2030,5.5,,economic,increased length of stay from 5.5 nights to 7.5 nights,high
+Sarawak_master_plan.pdf,30,SWK,employment,25.0,percent of total employment,2030,,,social,Employment generation - 25% of total employment in the tourism & hospitality sector,high
+Sarawak_master_plan.pdf,32,SWK,other,8.0,RM billion annual export value,2030,,,economic,Annual export value of RM8 billion by 2030,high
+Sarawak_master_plan.pdf,32,SWK,other,50.0,community-based ecotourism TPAs,2030,,,environmental,50 community-based ecotourism and conservation Totally Protected Areas,medium
+Sarawak_master_plan.pdf,32,SWK,other,4.5,million hectares certified forest,2030,,,environmental,Certify 4.5 mil ha of long term forest licence area under Malaysian Timber Certification Council,high

@@ -1,7 +1,8 @@
 # Dashboard Data Dictionary
 
 Spec for the Power BI dashboard build. All file paths are relative to the
-`mytourismsci/` project root.
+`mytourismsci/` project root. CSV versions of all data files are available
+at `outputs/csv/` for Power BI convenience; parquet remains canonical.
 
 ---
 
