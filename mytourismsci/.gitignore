@@ -26,9 +26,10 @@ env/
 # --- Environment variables (secrets) ---
 .env
 
-# --- Data: raw is always gitignored ---
+# --- Data: raw and interim are always gitignored ---
 data/raw/
 !data/raw/.gitkeep
+data/interim/
 
 # --- Processed data: commit parquets + JSON so teammates skip ingestion ---
 # Ignore non-data files that might land here (logs, temp, etc.)

@@ -1,0 +1,16 @@
+[
+  {
+    "source_doc": "Annual_report_MOTAC_2024.pdf",
+    "source_page": 173,
+    "state": "national",
+    "commitment_type": "visitor_arrivals",
+    "target_value": 37961485,
+    "target_unit": "international tourist arrivals (2024 actual)",
+    "target_year": 2024,
+    "baseline_value": null,
+    "baseline_year": null,
+    "sustainability_dimension": "economic",
+    "verbatim_quote": "Jumlah 37,961,485 ketibaan pelancong mengikut mod pengangkutan bagi tahun 2024",
+    "confidence": "medium"
+  }
+]

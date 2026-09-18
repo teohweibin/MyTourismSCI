@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PolicyCommitment",
+  "description": "A quantitative policy commitment extracted from Malaysian government tourism documents.",
+  "type": "object",
+  "required": [
+    "source_doc",
+    "source_page",
+    "state",
+    "commitment_type",
+    "target_value",
+    "target_unit",
+    "target_year",
+    "sustainability_dimension",
+    "verbatim_quote",
+    "confidence"
+  ],
+  "properties": {
+    "source_doc": {
+      "type": "string",
+      "description": "PDF filename from which the commitment was extracted."
+    },
+    "source_page": {
+      "type": "integer",
+      "description": "1-indexed page number where the commitment appears."
+    },
+    "state": {
+      "type": "string",
+      "description": "Canonical 3-letter state code (e.g. JOH, SGR) or 'national' for federal-level commitments."
+    },
+    "commitment_type": {
+      "type": "string",
+      "enum": [
+        "visitor_arrivals",
+        "tourism_receipts",
+        "hotel_rooms",
+        "homestay_operators",
+        "green_hotels",
+        "employment",
+        "waste_reduction",
+        "other"
+      ],
+      "description": "Category of the policy commitment."
+    },
+    "target_value": {
+      "type": "number",
+      "description": "The quantitative target specified in the commitment."
+    },
+    "target_unit": {
+      "type": "string",
+      "description": "Unit of measurement (e.g. 'persons', 'RM million', 'units', 'percent')."
+    },
+    "target_year": {
+      "type": "integer",
+      "description": "Year by which the target is to be achieved."
+    },
+    "baseline_value": {
+      "type": ["number", "null"],
+      "description": "Baseline or reference value, if stated. Null if not available."
+    },
+    "baseline_year": {
+      "type": ["integer", "null"],
+      "description": "Year of the baseline value, if stated. Null if not available."
+    },
+    "sustainability_dimension": {
+      "type": "string",
+      "enum": ["economic", "environmental", "social", "cross-cutting"],
+      "description": "Which sustainability pillar the commitment aligns to."
+    },
+    "verbatim_quote": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Exact quote from the source document supporting this commitment."
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low"],
+      "description": "Extraction confidence: high = explicit target with year, medium = numeric but context unclear, low = ambiguous quote."
+    }
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "source_doc": "Executive_Summary_RMK13.pdf",
+    "source_page": 9,
+    "state": "national",
+    "commitment_type": "other",
+    "target_value": 6,
+    "target_unit": "percent per annum private investment growth",
+    "target_year": 2030,
+    "baseline_value": null,
+    "baseline_year": null,
+    "sustainability_dimension": "economic",
+    "verbatim_quote": "increase private investment growth at 6% per annum, with an average value of RM417.9 billion per year",
+    "confidence": "high"
+  },
+  {
+    "source_doc": "Executive_Summary_RMK13.pdf",
+    "source_page": 10,
+    "state": "national",
+    "commitment_type": "other",
+    "target_value": 5.2,
+    "target_unit": "percent per annum services sector growth",
+    "target_year": 2030,
+    "baseline_value": null,
+    "baseline_year": null,
+    "sustainability_dimension": "economic",
+    "verbatim_quote": "growth of the services sector, which is targeted at 5.2% per annum during the Thirteenth Plan period",
+    "confidence": "high"
+  },
+  {
+    "source_doc": "Executive_Summary_RMK13.pdf",
+    "source_page": 10,
+    "state": "national",
+    "commitment_type": "other",
+    "target_value": 5.8,
+    "target_unit": "percent per annum manufacturing sector growth",
+    "target_year": 2030,
+    "baseline_value": null,
+    "baseline_year": null,
+    "sustainability_dimension": "economic",
+    "verbatim_quote": "support growth of the manufacturing sector at 5.8% per annum during the Thirteenth Plan period",
+    "confidence": "high"
+  },
+  {
+    "source_doc": "Executive_Summary_RMK13.pdf",
+    "source_page": 10,
+    "state": "national",
+    "commitment_type": "employment",
+    "target_value": 3.6,
+    "target_unit": "percent per annum labour productivity growth",
+    "target_year": 2030,
+    "baseline_value": null,
+    "baseline_year": null,
+    "sustainability_dimension": "economic",
+    "verbatim_quote": "increase the average growth of labour productivity at 3.6% per annum during the Thirteenth Plan period",
+    "confidence": "high"
+  }
+]
