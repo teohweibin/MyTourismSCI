@@ -1,6 +1,6 @@
 # MyTourismSCI — Weekend Handoff
 
-Last updated: 18 Sep 2026 (Day 6 of datathon)
+Last updated: 19 Sep 2026 (Day 7 of datathon)
 
 ---
 
@@ -22,18 +22,22 @@ Last updated: 18 Sep 2026 (Day 6 of datathon)
 | 18 Sep     | `e61f17d` | Geospatial indicators via state-buffer aggregation                |
 | 18 Sep     | `e7421a6` | Harmonise all processed parquets into unified state-year table    |
 | 18 Sep     | `4de91a7` | AO1 composite index + PCA validation + Monte Carlo sensitivity    |
+| 18 Sep     | `1845f4b` | Handoff docs + dashboard data dictionary for weekend execution    |
+| 19 Sep     | `074d52f` | ✅ AO3 policy-commitment gap analysis: 4 of 51 commitments mapped, state briefs + national synthesis in `outputs/` |
+| 19 Sep     | `c075f0d` | ✅ CSV versions of all key parquets available at `outputs/csv/` for teammates using Excel/Power BI without native parquet support |
 
 ### Remaining work
 
-- **AO2 — Forecasting** (spec in `docs/ao2_spec.md`): naive baseline,
-  ARIMA, XGBoost horse-race; SHAP interpretability; 3-year projection per
-  state. This is the highest-priority analytical task.
-- **AO3 — Gap analysis**: compare extracted policy commitments
-  (`data/processed/policy_commitments.parquet`) against current
-  MyTourismSCI trajectories; produce per-state gap table and visuals.
-- **Dashboard**: Power BI build (see `docs/dashboard_data_dictionary.md`).
-- **Report**: draft in `report/draft.md`; needs methodology write-up,
-  results narrative, visuals, limitations section, bibliography.
+- **AO2 — Forecasting** (spec in `docs/ao2_spec.md`, Stats/ML Lead):
+  naive baseline, ARIMA, XGBoost horse-race; SHAP interpretability;
+  3-year projection per state; WEF T&TDI validation. Highest-priority
+  analytical task remaining.
+- **Dashboard** (Dashboard Lead): Power BI build (see
+  `docs/dashboard_data_dictionary.md`). All data files ready including
+  CSV exports.
+- **Report Sections 4, 5, 6** (Research Lead): Section 4 (AO2 + AO3
+  findings integration), Section 5 (dashboard link + walkthrough),
+  Section 6 (synthesis + limitations). Sections 1, 2, 3, 7 are drafted.
 - **Video**: 5-min presentation video (due Day 12).
 
 ---
@@ -86,6 +90,10 @@ run without secrets.
 | `outputs/monte_carlo_summary.md` | Weight-sensitivity analysis; rank stability across 1 000 random weight draws | Report methodology section |
 | `outputs/figures/composite_heatmap_2025.png` | State × pillar heatmap for 2025 | Dashboard + report |
 | `outputs/figures/rank_trajectory_2020_2025.png` | Rank trajectories 2020–2025 for all 16 states | Dashboard + report |
+| `outputs/ao3_gap_analysis.parquet` (CSV: `outputs/csv/ao3_gap_analysis.csv`) | 4 mapped commitment gaps: state, commitment_type, target, current, status classification | Research Lead for Section 4, Dashboard Lead for Policy Watch page |
+| `outputs/state_briefs/*.md` | Per-state policy gap briefs (KUL, PLS, SWK, JOH, national) with verbatim quotes and source citations | Research Lead for state case narratives |
+| `outputs/ao3_national_synthesis.md` | National-level AO3 synthesis: status breakdown, key findings, disclosure paragraphs | Research Lead for Sections 4 and 6 |
+| `outputs/csv/*.csv` | CSV versions of all key parquets (scores, indicators, gap analysis, geospatial, policy commitments) | All teammates — Power BI / Excel convenience |
 
 ---
 
@@ -125,6 +133,19 @@ run without secrets.
 8. **International arrivals** — State-level breakdown unavailable;
    `international_arrivals_share` is NaN for all rows.
 
+9. **AO3 mappability** — Only 4 of 51 extracted policy commitments map to
+   observable MyTourismSCI indicators; all 4 fall within the Economic
+   dimension (visitor arrivals, tourism receipts). Environmental and
+   Social commitments cannot be gap-analysed with the current indicator
+   set. See `outputs/ao3_national_synthesis.md` for full disclosure.
+
+10. **Post-COVID CAGR baseline effect** — Observed growth rates in AO3
+    gap analysis are computed as CAGR over 2020–2025, which includes the
+    COVID-19 nadir as baseline. This inflates apparent growth rates during
+    the recovery period. `on_track` classifications should be interpreted
+    with this baseline effect in mind. Disclosed in
+    `outputs/ao3_national_synthesis.md`.
+
 ---
 
 ## 6. Emergency Contacts
@@ -142,6 +163,8 @@ run without secrets.
 **Tuesday 22 September 2026, 5:00 PM MYT** — final submission.
 
 Working backwards:
-- Mon 21 Sep: report + video finalisation (hard freeze)
-- Sun 20 Sep: dashboard integration complete; draft report ready for review
-- Sat 19 Sep: AO2 + AO3 analysis complete; dashboard data handoff
+- **Mon 21 Sep 6:00 PM MYT**: Stats/ML AO2 deliverables due (forecast + SHAP + WEF validation)
+- **Mon 21 Sep 6:00 PM MYT**: Dashboard due (Power BI published link)
+- **Mon 21 Sep 11:00 PM MYT**: Report Sections 4, 5, 6 due (Research Lead)
+- **Tue 22 Sep**: report + video finalisation (hard freeze)
+- **Tue 22 Sep 5:00 PM MYT**: final submission

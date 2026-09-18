@@ -110,6 +110,35 @@ LLM-extracted policy commitments (51 rows). Used on Page 4 (Policy Watch).
 | `verbatim_quote` | string | Verbatim excerpt from source document |
 | `confidence` | string | Extraction confidence: `high`, `medium`, or `low` |
 
+### `outputs/ao3_gap_analysis.parquet` (or `outputs/csv/ao3_gap_analysis.csv`)
+
+Policy commitment gap analysis (4 rows). Feeds Page 4 (Policy Watch) gap
+indicators — shows current value vs. target with classification.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `state` | string | State code or "national" |
+| `commitment_type` | string | Commitment type (visitor_arrivals, tourism_receipts) |
+| `indicator` | string | Matched MyTourismSCI indicator column |
+| `target_value` | float | Original target value |
+| `target_unit` | string | Original target unit |
+| `target_converted` | float | Target converted to indicator units |
+| `target_year` | int | Target year |
+| `current_value` | float | Most recent observed value (2025) |
+| `observed_cagr` | float | CAGR 2020–2025 |
+| `observed_annual_change` | float | Observed annual change in indicator units |
+| `required_annual_change` | float | Required annual change to meet target |
+| `status` | string | `already_met`, `on_track`, `at_risk`, or `off_track` |
+| `verbatim_quote` | string | Source verbatim quote |
+| `source_doc` | string | Source document |
+| `source_page` | int | Source page number |
+| `sustainability_dimension` | string | Sustainability dimension |
+
+### `outputs/csv/*.csv`
+
+CSV versions of all above parquets provided for Power BI convenience.
+Parquet remains the canonical source.
+
 ---
 
 ## 2. Recommended Dashboard Architecture (4 pages)
@@ -211,3 +240,12 @@ recreations.
 3. Generate a public sharing link
 4. Paste the link into the report (Section 5: Dashboard) and the
    submission form
+
+---
+
+## 7. Reading Parquets in Power BI
+
+Power BI Desktop supports parquet natively via Get Data → More → File →
+Parquet. If parquet import fails or is inconvenient, use the CSV
+equivalents in `outputs/csv/`. All CSVs have UTF-8 encoding and standard
+comma delimiters.
