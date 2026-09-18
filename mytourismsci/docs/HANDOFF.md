@@ -42,6 +42,205 @@ Last updated: 19 Sep 2026 (Day 7 of datathon)
 
 ---
 
+## Quick Start by Role
+
+Find your role below and follow the numbered pathway. Every file path is
+clickable in most editors (VS Code, GitHub web). Everything you need is
+in this repo — no need to ask the primary developer during the weekend.
+
+---
+
+### For the Stats/ML Lead (executing AO2)
+
+**Your one-line mission:** produce a 3-year forecast (2026–2028) of
+MyTourismSCI per state + SHAP-based driver diagnosis + WEF T&TDI
+national validation.
+
+**Pathway:**
+
+1. **Read first (10 min context):** `docs/ao2_spec.md` — this is your
+   full step-by-step execution spec, written specifically for you
+2. **Then skim (5 min):** `docs/harmonization_methodology.md` — explains
+   how the input data was assembled
+3. **Then skim (5 min):** `outputs/pillar_pca_validation.md` and
+   `outputs/monte_carlo_summary.md` — AO1 methodology sanity so you
+   don't accidentally re-derive it
+
+**Your input files:**
+- `outputs/mytourismsci_scores.parquet` — MyTourismSCI scores 2020–2025
+  per state (this is what you forecast)
+- `data/final/state_year_indicators.parquet` — 25 indicator columns per
+  state-year (your feature matrix)
+- Optional: `outputs/csv/*.csv` if you prefer CSV over parquet
+
+**Your output files (write these):**
+- `outputs/mytourismsci_forecast.parquet` — forecasted scores 2026–2028
+- `outputs/shap_drivers.parquet` — SHAP values per state x feature
+- `outputs/model_comparison.md` — MAE comparison of baseline/ARIMA/XGBoost
+- `outputs/figures/forecast_trajectory.png` — 16-state line chart with CI
+  ribbons
+- `outputs/wef_ttdi_validation.md` — national aggregate vs WEF trajectory
+
+**Where your outputs get consumed:**
+- `outputs/mytourismsci_forecast.parquet` -> Dashboard Lead (Page 3),
+  Research Lead (Section 4)
+- `outputs/shap_drivers.parquet` -> Research Lead (Section 4
+  driver-diagnosis narrative)
+- `outputs/wef_ttdi_validation.md` -> Research Lead (Section 3.7
+  validation subsection)
+
+**Deadline:** Monday 22 Sep 6:00 PM MYT
+
+---
+
+### For the Dashboard Lead (building Power BI dashboard)
+
+**Your one-line mission:** build a live-hosted 4-page Power BI dashboard
+visualising MyTourismSCI scores, pillar drilldowns, forecasts, and policy
+commitments — publish the shareable URL for the report.
+
+**Pathway:**
+
+1. **Read first (10 min context):**
+   `docs/dashboard_data_dictionary.md` — full schema of every data file
+   you'll import, recommended 4-page architecture, key visuals per page
+2. **Then look at (5 min):**
+   `outputs/figures/composite_heatmap_2025.png` and
+   `outputs/figures/rank_trajectory_2020_2025.png` — reference designs
+   already produced by AO1
+3. **Then skim (5 min):** the Current State section of `docs/HANDOFF.md`
+   to understand the pitch the dashboard supports
+
+**Your input files (all in `data/final/`, `outputs/`, or
+`outputs/csv/`):**
+- `outputs/mytourismsci_scores.parquet` (or
+  `outputs/csv/mytourismsci_scores.csv`) — main index scores + rankings
+- `data/final/state_year_indicators.parquet` — wide format for indicator
+  drilldown
+- `data/final/state_year_indicators_long.parquet` — long format for
+  pillar-filtered views
+- `data/processed/geospatial/state_geospatial_indicators.parquet` —
+  coastal + PA buffer indicators
+- `data/raw/geospatial/dosm_boundaries/states.geojson.zip` — state
+  polygons for choropleth map
+- `data/processed/policy_commitments.parquet` — 51 extracted policy
+  commitments (feeds Page 4)
+- `outputs/ao3_gap_analysis.parquet` — 4 mappable commitments with gap
+  classification (feeds Page 4)
+- **After Stats/ML Lead delivers:**
+  `outputs/mytourismsci_forecast.parquet` — feeds Page 3 forecast ribbon
+
+**Reading parquets in Power BI:** Get Data -> More -> File -> Parquet. If
+parquet import fails, use CSV equivalents in `outputs/csv/`.
+
+**Your output:**
+- Published Power BI Service URL (shareable link, no login required)
+- Post the URL in team chat AND paste it in `report/draft.md` Section 5
+
+**Where your output gets consumed:**
+- Research Lead cites the URL in Section 5 of the report
+- Judges will click through the dashboard during evaluation
+
+**Deadline:** Monday 22 Sep 6:00 PM MYT
+
+---
+
+### For the Research Lead (writing Report Sections 4, 5, 6)
+
+**Your one-line mission:** finalise the written report by writing
+Findings (Section 4), Dashboard (Section 5), and Conclusion (Section 6).
+Sections 1, 2, 3, 7 are already drafted — you may revise them for voice
+consistency.
+
+**Pathway:**
+
+1. **Read first (15 min context):** `report/draft.md` — the current
+   draft. Sections 1 (Introduction), 2 (Literature Review),
+   3 (Methodology), and 7 (References) are already written by the
+   primary developer. Read them carefully to understand the analytical
+   framework and voice.
+2. **Then read (10 min):** `outputs/ao3_national_synthesis.md` — the AO3
+   gap analysis findings, including two disclosure paragraphs (Baseline
+   Effect + Mappability as a Finding) that you should paraphrase into
+   Section 4 or Section 6
+3. **Then read (15 min):** all files in `outputs/state_briefs/*.md` —
+   per-state briefs for Sarawak, Perlis, KL, Johor, National.
+   Direct-quote verbatim quotes from these when writing state case
+   narratives in Section 4
+4. **After Stats/ML Lead delivers:** read `outputs/model_comparison.md`
+   and `outputs/wef_ttdi_validation.md` — these feed Section 4 forecast
+   findings and Section 3.7 validation subsection respectively
+5. **After Dashboard Lead delivers:** grab the Power BI URL and 2–3
+   screenshots for Section 5
+
+**Your input files (read to write):**
+- `outputs/mytourismsci_scores.parquet` (or
+  `outputs/csv/mytourismsci_scores.csv`) — headline numbers per state
+- `outputs/pillar_pca_validation.md` — methodology support for
+  Section 3.6
+- `outputs/monte_carlo_summary.md` — methodology support for Section 3.7
+  (rank stability findings)
+- `outputs/ao3_gap_analysis.parquet` (or CSV) — 4 mappable commitments
+  with status
+- `outputs/state_briefs/*.md` — verbatim quotes + per-state findings
+- `outputs/ao3_national_synthesis.md` — synthesis + disclosure paragraphs
+- `data/processed/policy_commitments.parquet` — all 51 extracted
+  commitments (for context)
+- `outputs/figures/*.png` — figures for the report body
+- **After Stats/ML Lead delivers:**
+  `outputs/mytourismsci_forecast.parquet`,
+  `outputs/shap_drivers.parquet`, `outputs/wef_ttdi_validation.md`
+- **After Dashboard Lead delivers:** Power BI URL + screenshots
+
+**Your output:**
+- `report/draft.md` — the final report, with all sections complete
+
+**Report sections to write:**
+- **Section 4 (Findings):** MyTourismSCI 2025 rankings + Sarawak
+  Environmental caveat + trajectory patterns 2020–2025 + AO2 forecast
+  findings + AO2 SHAP drivers per state + AO3 gap analysis findings
+  (paraphrase from `ao3_national_synthesis.md`) + state case narratives
+  (using `state_briefs/*.md`)
+- **Section 5 (Dashboard):** dashboard URL + purpose of each of the 4
+  pages + 2–3 screenshots
+- **Section 6 (Conclusion):** synthesis of findings + recommendations to
+  DOSM/MOTAC/state agencies + limitations (Sarawak Environmental,
+  forestry data gap, salaries deferred, homestay deferred, AO3
+  mappability) + future work
+
+**Verification tasks in Section 7 (References):**
+Look for `[YEAR — VERIFY]` and `[JOURNAL NAME — VERIFY]` flags — these
+are load-bearing and MUST be resolved before submission. Full checklist
+at end of Section 7.
+
+**Deadline:** Monday 22 Sep 11:00 PM MYT (leaves 18 hours for final
+polish before Tuesday 5 PM submission)
+
+---
+
+### For whoever owns the video (10-minute demonstration video)
+
+If nobody is assigned yet, this is highest-risk. Someone must own it by
+Sunday.
+
+**Pathway:**
+1. Read the Current State section of `docs/HANDOFF.md`
+2. Watch the dashboard once Dashboard Lead publishes URL
+3. Skim `report/draft.md` Section 4 for the headline findings
+
+**Recommended structure (10 min):**
+- 0:00–1:00 — problem statement (from Report Section 1.2)
+- 1:00–2:00 — MyTourismSCI concept + 3-pillar structure
+- 2:00–4:00 — data pipeline walkthrough (screenshot from HANDOFF.md's
+  repo layout)
+- 4:00–6:00 — key findings (from Section 4)
+- 6:00–8:00 — dashboard demo (live)
+- 8:00–10:00 — policy implications + DOSM inheritance story
+
+**Deadline:** Tuesday 22 Sep 3:00 PM MYT (2 hours before submission)
+
+---
+
 ## 2. Repo Layout
 
 `src/` contains all Python source organised into subpackages: `ingestion/`
